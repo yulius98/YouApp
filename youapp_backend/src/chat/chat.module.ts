@@ -4,16 +4,29 @@ import { ChatService } from './chat.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Message, MessageSchema } from './entities/message.entity';
 import { ChatMessage, ChatMessageSchema } from './entities/chat-message.schema';
-import { AuthModule } from '../auth/auth.module'; // Untuk auth di gateway jika perlu
+import { Chat, ChatSchema } from './entities/chat.entity';
+import { AuthModule } from '../auth/auth.module';
+import { PrivateMessageConsumer } from './consumers/private-message.consumer';
+import { AmqpConnection, RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: Message.name, schema: MessageSchema },
       { name: ChatMessage.name, schema: ChatMessageSchema },
+      { name: Chat.name, schema: ChatSchema },
     ]),
     AuthModule,
+    RabbitMQModule.forRoot({
+      exchanges: [
+        {
+          name: 'private_chat_exchange',
+          type: 'topic',
+        },
+      ],
+      uri: process.env.RABBITMQ_URI || 'amqp://localhost:5672',
+    }),
   ],
-  providers: [ChatGateway, ChatService],
+  providers: [ChatGateway, ChatService, PrivateMessageConsumer, AmqpConnection],
 })
 export class ChatModule {}

@@ -1,48 +1,48 @@
 # YouApp
 
-YouApp adalah aplikasi modern yang terdiri dari dua bagian utama: **YouApp Backend** (API server berbasis NestJS) dan **YouApp Mobile** (aplikasi mobile cross-platform berbasis Flutter). Aplikasi ini dirancang untuk memberikan pengalaman pengguna yang interaktif, aman, dan mudah diakses di berbagai perangkat.
+YouApp is a modern application consisting of two main parts: **YouApp Backend** (an API server based on NestJS) and **YouApp Mobile** (a cross-platform mobile application based on Flutter). This app is designed to provide an interactive, secure, and easily accessible user experience across various devices.
 
-## Fitur Utama
-- **Autentikasi & Otorisasi**: Sistem login/register dengan JWT untuk keamanan data pengguna.
-- **Chat Real-Time**: Komunikasi instan antar pengguna menggunakan WebSocket.
-- **Manajemen Pengguna**: CRUD profil, pengaturan akun, dan fitur sosial lainnya.
-- **Arsitektur Modular**: Kode backend dan mobile terstruktur rapi, mudah dikembangkan dan dipelihara.
+## Main Features
+- **Authentication & Authorization**: Login/register system with JWT for user data security.
+- **Real-Time Chat**: Instant communication between users using RabbitMQ.
+- **User Management**: CRUD profile, account settings, and other social features.
+- **Modular Architecture**: Well-structured backend and mobile code, easy to develop and maintain.
 
 ## Tech Stack
 
 ### Backend (youapp_backend)
-- **NestJS**: Framework Node.js progresif untuk membangun aplikasi backend yang scalable dan maintainable.
-- **TypeScript**: Bahasa utama untuk pengembangan backend, memberikan type safety dan produktivitas tinggi.
-- **WebSocket**: Untuk fitur chat real-time.
-- **JWT (JSON Web Token)**: Untuk autentikasi dan otorisasi yang aman.
-- **Docker**: Mendukung deployment dan pengembangan yang konsisten di berbagai environment.
+- **NestJS**: Progressive Node.js framework for building scalable and maintainable backend applications.
+- **TypeScript**: Main language for backend development, providing type safety and high productivity.
+- **WebSocket**: For real-time chat features.
+- **JWT (JSON Web Token)**: For secure authentication and authorization.
+- **Docker**: Supports consistent deployment and development across different environments.
 
 ### Mobile (youapp_mobile)
-- **Flutter**: Framework UI dari Google untuk membangun aplikasi mobile cross-platform (Android, iOS, Web, Desktop) dari satu basis kode.
-- **Dart**: Bahasa pemrograman utama untuk Flutter.
-- **Provider**: State management yang efisien dan mudah digunakan.
-- **Integrasi API**: Komunikasi dengan backend menggunakan HTTP/REST API.
+- **Flutter**: Google's UI framework for building cross-platform mobile applications (Android, iOS, Web, Desktop) from a single codebase.
+- **Dart**: Main programming language for Flutter.
+- **Provider**: Efficient and easy-to-use state management.
+- **API Integration**: Communication with backend using HTTP/REST API.
 
-## Struktur Proyek
+## Project Structure
 ```
-youapp_backend/   # Source code backend (NestJS)
-youapp_mobile/    # Source code aplikasi mobile (Flutter)
+youapp_backend/   # Backend source code (NestJS)
+youapp_mobile/    # Mobile application source code (Flutter)
 ```
 
-## Cara Menjalankan
+## How to Run
 ### Backend
-1. Masuk ke folder `youapp_backend`
+1. Go to the `youapp_backend` folder
 2. Install dependencies: `npm install`
-3. Jalankan server: `npm run start:dev`
+3. Start the server: `npm run start:dev`
 
 ### Mobile
-1. Masuk ke folder `youapp_mobile`
+1. Go to the `youapp_mobile` folder
 2. Install dependencies: `flutter pub get`
-3. Jalankan aplikasi: `flutter run`
+3. Run the application: `flutter run`
 
-## Kontribusi
-Kontribusi sangat terbuka! Silakan fork repository ini, buat branch baru, dan ajukan pull request.
+## Contribution
+Contributions are very welcome! Please fork this repository, create a new branch, and submit a pull request.
 
 ---
 
-**YouApp** – Solusi aplikasi modern, cepat, dan fleksibel untuk kebutuhan Anda!
+**YouApp** – A modern, fast, and flexible application solution for your needs!

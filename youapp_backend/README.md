@@ -95,4 +95,51 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## License
 
+
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+---
+
+## API Endpoint List
+
+### Auth
+- **POST /auth/register**
+  - Body: `{ "email": string, "username": string, "password": string }`
+- **POST /auth/login**
+  - Body: `{ "email"?: string, "username"?: string, "password": string }`
+
+### API (User Profile)
+- **POST /api/register**
+  - Body: `{ "email": string, "username": string, "password": string }`
+- **POST /api/login**
+  - Body: `{ "email"?: string, "username"?: string, "password": string }`
+- **POST /api/createProfile** (Auth required)
+  - Body: `UpdateUserDto`
+- **PUT /api/updateProfile** (Auth required)
+  - Body: `UpdateUserDto`
+- **GET /api/getProfile** (Auth required)
+
+### User
+- **GET /user/profile** (Auth required)
+- **PATCH /user/update** (Auth required)
+  - Body: `UpdateUserDto`
+
+### Chat (Private)
+- **POST /api/chats/private** (Auth required)
+  - Body: `CreatePrivateChatDto`
+- **POST /api/chats/sendMessage** (Auth required)
+  - Body: `SendMessageDto`
+- **GET /api/chats/:userId/viewMessage** (Auth required)
+  - Query: `page` (default 1), `limit` (default 10), `since` (optional)
+- **GET /api/chats** (Auth required)
+
+### Group
+- **POST /api/groups** (Auth required)
+  - Body: `CreateGroupDto`
+- **POST /api/groups/:groupId/sendMessage** (Auth required)
+  - Body: `SendGroupMessageDto`
+- **GET /api/groups/:groupId/viewMessage** (Auth required)
+  - Query: `page` (default 1), `limit` (default 10), `since` (optional)
+- **GET /api/groups** (Auth required)
+- **POST /api/groups/:groupId/members** (Auth required)
+  - Body: `UpdateGroupMemberDto`

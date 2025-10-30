@@ -32,7 +32,7 @@ export class AuthService {
       username,
     });
     await user.save();
-    const token = this.jwtService.sign({ sub: user._id, email: user.email });
+    const token = this.jwtService.sign({ sub: user._id, _id: user._id });
     return { token };
   }
 
@@ -42,7 +42,7 @@ export class AuthService {
     if (!user || !(await comparePassword(password, user.password))) {
       throw new UnauthorizedException('Invalid credentials');
     }
-    const token = this.jwtService.sign({ sub: user._id, email: user.email });
+    const token = this.jwtService.sign({ sub: user._id, _id: user._id });
     return { token };
   }
 }

@@ -7,7 +7,7 @@ import { User } from '../../user/entities/user.entity';
 
 interface JwtPayload {
   sub: string;
-  email: string;
+  _id: string;
 }
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -27,6 +27,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: JwtPayload) {
     const user = await this.userModel.findById(payload.sub);
     if (!user) return null;
-    return { _id: String(user._id), email: user.email };
+    return { _id: String(user._id), userId: String(user._id) };
   }
 }
