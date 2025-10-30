@@ -19,13 +19,18 @@ export class AuthService {
   ) {}
 
   async register(registerDto: RegisterDto): Promise<{ token: string }> {
-    const { email, password, name } = registerDto;
+    const { email, password, name, username } = registerDto;
     const existingUser = await this.userModel.findOne({ email });
     if (existingUser) {
       throw new BadRequestException('Email already exists');
     }
     const hashedPassword = await hashPassword(password);
-    const user = new this.userModel({ email, password: hashedPassword, name });
+    const user = new this.userModel({
+      email,
+      password: hashedPassword,
+      name,
+      username,
+    });
     await user.save();
     const token = this.jwtService.sign({ sub: user._id, email: user.email });
     return { token };

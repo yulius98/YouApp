@@ -1,37 +1,37 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-@Schema({ timestamps: true })
+@Schema()
 export class User extends Document {
-  @Prop({ required: true, unique: true })
-  email: string;
-
-  @Prop({ required: true })
-  password: string;
-
   @Prop({ required: true })
   name: string;
 
   @Prop({ required: true, unique: true })
   username: string;
 
-  @Prop()
-  birthday?: string;
+  @Prop({ required: true, unique: true })
+  email: string;
+
+  @Prop({ required: true })
+  password: string;
 
   @Prop()
-  horoscope?: string;
+  birthday: string;
 
   @Prop()
-  zodiac?: string;
+  height: number;
 
   @Prop()
-  height?: number;
-
-  @Prop()
-  weight?: number;
+  weight: number;
 
   @Prop({ type: [String] })
-  interests?: string[];
+  interests: string[];
+
+  @Prop()
+  horoscope: string;
+
+  @Prop()
+  zodiac: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
