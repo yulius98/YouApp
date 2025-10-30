@@ -1,0 +1,3 @@
+- [x] Import IUser interface in user.controller.ts
+- [x] Update getProfile method: change user parameter type to IUser, adjust validation checks, and use user._id in service call
+- [x] Update updateProfile method: change user parameter type to IUser, adjust validation checks, and use user._id in service call
