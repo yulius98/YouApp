@@ -69,6 +69,7 @@ export class GroupService {
       .limit(options.limit)
       .lean()) as unknown as LeanGroupMessage[];
     return messages.map((msg: LeanGroupMessage) => ({
+      groupId: groupId,
       messageId:
         typeof msg._id === 'object' && msg._id && 'toString' in msg._id
           ? (msg._id as { toString: () => string }).toString()

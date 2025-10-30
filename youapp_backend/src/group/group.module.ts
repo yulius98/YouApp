@@ -7,7 +7,7 @@ import {
   GroupMessage,
   GroupMessageSchema,
 } from './entities/group-message.entity';
-import { AmqpConnection, RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
+import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
 import { GroupMessageConsumer } from './consumers/group-message.consumer';
 
 @Module({
@@ -27,7 +27,7 @@ import { GroupMessageConsumer } from './consumers/group-message.consumer';
     }),
   ],
   controllers: [GroupController],
-  providers: [GroupService, AmqpConnection, GroupMessageConsumer],
+  providers: [GroupService, GroupMessageConsumer],
   exports: [GroupService],
 })
 export class GroupModule {}

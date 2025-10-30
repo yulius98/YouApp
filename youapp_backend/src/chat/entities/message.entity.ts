@@ -8,6 +8,12 @@ export class Message extends Document {
 
   @Prop({ required: true })
   userId: string;
+
+  @Prop()
+  chatId?: string;
+
+  @Prop()
+  createdAt?: Date;
 }
 
 export const MessageSchema = SchemaFactory.createForClass(Message);

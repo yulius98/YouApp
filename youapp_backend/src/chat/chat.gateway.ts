@@ -4,14 +4,18 @@ import {
   MessageBody,
   ConnectedSocket,
   WsException,
+  WebSocketServer,
 } from '@nestjs/websockets';
-import { Socket } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import { ChatService } from './chat.service';
 import { MessageDto } from './dto/message.dto';
 
 @WebSocketGateway({ cors: true })
 export class ChatGateway {
   constructor(private chatService: ChatService) {}
+
+  @WebSocketServer()
+  server: Server;
 
   @SubscribeMessage('message')
   async handleMessage(

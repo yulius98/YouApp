@@ -6,6 +6,7 @@ import { ChatMessage } from './entities/chat-message.schema';
 import { MessageDto } from './dto/message.dto';
 import { Chat } from './entities/chat.entity';
 import { SendMessageDto } from './dto/send-message.dto';
+import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 
 @Injectable()
 export class ChatService {
@@ -13,6 +14,7 @@ export class ChatService {
     @InjectModel(Message.name) private messageModel: Model<Message>,
     @InjectModel(ChatMessage.name) private chatMessageModel: Model<ChatMessage>,
     @InjectModel(Chat.name) private chatModel: Model<Chat>,
+    private readonly amqpConnection: AmqpConnection,
   ) {}
   // CRUD for chat_message collection
   async createChatMessage(data: Partial<ChatMessage>): Promise<ChatMessage> {
@@ -59,8 +61,24 @@ export class ChatService {
     const message = new this.messageModel({
       content: dto.content,
       userId: senderId,
+      chatId: dto.chatId,
+      timestamp: new Date(),
     });
-    return await message.save();
+    const savedMessage = await message.save();
+
+    // Publish ke RabbitMQ agar lawan bicara menerima pesan
+
+    const msgObj = savedMessage.toObject
+      ? savedMessage.toObject()
+      : savedMessage;
+    await this.amqpConnection.publish('private_chat_exchange', 'private_chat', {
+      chatId: dto.chatId,
+      senderId,
+      content: dto.content,
+      timestamp: msgObj && msgObj.createdAt ? msgObj.createdAt : new Date(),
+    });
+
+    return savedMessage;
   }
 
   async getPrivateChatHistory(
