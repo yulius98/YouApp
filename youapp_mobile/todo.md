@@ -1,0 +1,2 @@
+- [x] Fix authentication header in ApiService.updateProfile to use 'x-access-token' instead of 'Authorization'
+- [x] Add mounted checks in ProfileScreen to prevent setState after dispose
