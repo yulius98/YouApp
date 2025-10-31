@@ -10,12 +10,12 @@ import {
 } from '@nestjs/common';
 import { AuthService } from '../auth/auth.service';
 import { UserService } from '../user/user.service';
-import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { GetUser } from '../common/decorators/get-user.decorator';
 import type { JwtUser } from '../common/decorators/get-user.decorator';
 import { UpdateUserDto } from '../user/dto/update-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { comparePassword } from '../common/utils/hash.util';
+import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 
 @Controller('api')
 export class ApiController {

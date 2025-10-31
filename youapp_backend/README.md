@@ -124,6 +124,7 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 - **PATCH /user/update** (Auth required)
   - Body: `UpdateUserDto`
 
+
 ### Chat (Private)
 - **POST /api/chats/private** (Auth required)
   - Body: `CreatePrivateChatDto`
@@ -132,6 +133,8 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 - **GET /api/chats/:userId/viewMessage** (Auth required)
   - Query: `page` (default 1), `limit` (default 10), `since` (optional)
 - **GET /api/chats** (Auth required)
+- **DELETE /api/chats/:chatId/deleteChat** (Auth required)
+  - Menghapus private chat berdasarkan chatId milik user yang sedang login.
 
 ### Group
 - **POST /api/groups** (Auth required)

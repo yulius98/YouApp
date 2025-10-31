@@ -111,4 +111,20 @@ export class ChatService {
       })
       .exec();
   }
+
+  async deletePrivateChat(
+    chatId: string,
+    userId: string,
+  ): Promise<{ deletedCount: number }> {
+    const chatDeleteResult = await this.chatModel.deleteOne({
+      _id: chatId,
+      participants: userId,
+    });
+
+    if (chatDeleteResult.deletedCount > 0) {
+      await this.messageModel.deleteMany({ chatId });
+    }
+
+    return chatDeleteResult;
+  }
 }

@@ -1,22 +1,11 @@
-import {
-  Controller,
-  Post,
-  Body,
-  UseGuards,
-  Get,
-  Param,
-  Query,
-} from '@nestjs/common';
-import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
+import { Controller, Post, Body, Get, Param, Query } from '@nestjs/common';
 import { GroupService } from './group.service.js';
 import { CreateGroupDto } from './dto/create-group.dto';
 import { SendGroupMessageDto } from './dto/send-group-message.dto';
 import { UpdateGroupMemberDto } from './dto/update-group-member.dto';
 import { GetUser } from '../common/decorators/get-user.decorator';
-import type { Request } from 'express';
 
 @Controller('api/groups')
-@UseGuards(JwtAuthGuard)
 export class GroupController {
   constructor(private readonly groupService: GroupService) {}
 
