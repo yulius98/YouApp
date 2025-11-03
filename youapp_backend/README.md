@@ -119,10 +119,13 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
   - Body: `UpdateUserDto`
 - **GET /api/getProfile** (Auth required)
 
+
 ### User
 - **GET /user/profile** (Auth required)
 - **PATCH /user/update** (Auth required)
   - Body: `UpdateUserDto`
+- **DELETE /user/:userId/deleteUser** (Auth required)
+  - Delete users based on userID. Only accessible by users who have authorization tokens.
 
 
 ### Chat (Private)
@@ -134,7 +137,7 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
   - Query: `page` (default 1), `limit` (default 10), `since` (optional)
 - **GET /api/chats** (Auth required)
 - **DELETE /api/chats/:chatId/deleteChat** (Auth required)
-  - Menghapus private chat berdasarkan chatId milik user yang sedang login.
+  - Delete private chats based on the chat ID of the currently logged-in user.
 
 ### Group
 - **POST /api/groups** (Auth required)

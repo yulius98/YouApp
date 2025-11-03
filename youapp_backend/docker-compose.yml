@@ -1,4 +1,4 @@
-# version: '3.8'
+version: '3.8'
 services:
   app:
     build: .
@@ -6,12 +6,17 @@ services:
       - "3000:3000"
     environment:
       - MONGO_URI=mongodb://mongo:27017/youapp
-      - JWT_SECRET=your_super_secret_key_here
+      - JWT_PRIVATE_KEY_PATH=./private.key
+      - JWT_PUBLIC_KEY_PATH=./public.key
+      - JWT_ALGORITHM=RS256
       - JWT_EXPIRATION=1h
+    volumes:
+      - ./private.key:/app/private.key:ro
+      - ./public.key:/app/public.key:ro
     depends_on:
       - mongo
   mongo:
-    image: mongo:latest
+    image: mongo:8.2.1
     ports:
       - "27017:27017"
     volumes:

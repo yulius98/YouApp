@@ -2,9 +2,13 @@ import {
   Controller,
   Get,
   Patch,
+  Delete,
+  Param,
+  UseGuards,
   Body,
   BadRequestException,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { GetUser } from '../common/decorators/get-user.decorator';
@@ -31,5 +35,13 @@ export class UserController {
       throw new BadRequestException('Invalid user object');
     }
     return this.userService.update(user._id, updateUserDto);
+  }
+  @UseGuards(JwtAuthGuard)
+  @Delete(':userId/deleteUser')
+  async deleteUser(@Param('userId') userId: string) {
+    if (!userId) {
+      throw new BadRequestException('UserId is required');
+    }
+    return this.userService.deleteUser(userId);
   }
 }
